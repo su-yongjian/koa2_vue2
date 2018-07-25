@@ -49,7 +49,8 @@ export default {
             }).then(res=>{
                 console.log(res)
                 if(res.data.code==200){
-
+                    console.log('注册成功');
+                    
                 }else{
                     this.openLoading=false
                 }
