@@ -4,6 +4,7 @@ const app = new Koa();
 const mongoose = require('mongoose')
 const {connect,initSchemas} = require('./database/init.js') ;
 let user = require('./appApi/user.js')
+let goods = require('./appApi/goods.js')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa2-cors');
 let router = new Router();
@@ -13,6 +14,7 @@ app.use(cors())//跨域运行一定要放在app.use(router.routes());前面，�
 
 // 3.装载所有子路由
 router.use('/user',user.routes());
+router.use('/goods',goods.routes());
 // 这里相当于在浏览器访问：
 // http://localhost:3000/user/时加载的是用户首页
 // 访问http://localhost:3000/user/register时请求的是注册页
@@ -53,7 +55,7 @@ app.use(router.allowedMethods());
 // }))
 
 app.use(async(ctx)=>{
-    ctx.body = '<h1>hello word</h1>'
+    ctx.body = '<h1>端口错误</h1>'
 })
 app.listen(3000,()=>{
     console.log('[Server] starting at port 3000')

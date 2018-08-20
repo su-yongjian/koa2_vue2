@@ -3,6 +3,9 @@
         <input type="text" v-model="userName">
         <input type="password" v-model="password">
         <button @click="register">注册</button>
+        <input type="text" v-model="userName">
+        <input type="password" v-model="password">
+        <button @click="login">登录</button>
     </div>
 </template>
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -53,6 +56,18 @@ export default {
                     
                 }else{
                     this.openLoading=false
+                }
+            })
+        },
+        login(){
+            let url = 'http://localhost:3000/user/login';
+            this.$axios.post(url,data).then(res=>{
+                if(res.data.code==200){
+                    console.log('login success');
+                    
+                }else{
+                    console.log('login fail');
+                    
                 }
             })
         }
